@@ -4,6 +4,8 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 import chalkAnimation from 'chalk-animation';
 import readline from 'readline';
+import figlet from 'figlet';
+import gradient from 'gradient-string';
 
 
 
@@ -29,16 +31,20 @@ const pause = async () => {
   let repeat = true;
   
   async function intro() {
-    const rainbowTitle = chalkAnimation.rainbow(`
-    Mola mucho no?
-    `);
+    figlet(`KEPLER  CLI  SEARCH  TOOL`, (err, data) => {
+      console.log(gradient.pastel.multiline(data) + '\n');
+  
+      console.log(
+        chalk.green(
+          `Press any key to start or esc to exit`
+        )
+      );
+    });
     await pause();
   }
   
   async function next() {
-    const rainbowTitle = chalkAnimation.rainbow(`
-    Mola bastante
-    `);
+    const rainbowTitle = chalkAnimation.rainbow(`What's Kepler?`);
     await pause();
     rainbowTitle.stop();
   }
