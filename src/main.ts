@@ -1,24 +1,48 @@
+#!/usr/bin/env node
+
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 import chalkAnimation from 'chalk-animation';
+import readline from 'readline';
 
-// Make promise that resolves on enter key pressed
-// const sleep = new Promise 
-// store it on a new module
 
-async function intro() {
-  const rainbowTitle = chalkAnimation.rainbow(`
-  Mola mucho no?
-  `);
+
+// Pause handler between dialogs
+
+const wait = async () => {
+  return await new Promise<void>((resolve) => {
+    readline.emitKeypressEvents(process.stdin);
+    
+    if (process.stdin.isTTY) process.stdin.setRawMode(true);
+  
+    process.stdin.on('keypress', (chunk, key) => {
+      if (key.name == 'escape') {
+        console.log('Escape pressed, exiting the process');
+        process.exit();
+      }
+      console.clear()
+      resolve();
+    });
+  })
 }
 
-async function next() {
+  let repeat = true;
+  
+  async function intro() {
+    const rainbowTitle = chalkAnimation.rainbow(`
+    Mola mucho no?
+    `);
+    await wait();
+  }
+  
+  async function next() {
     const rainbowTitle = chalkAnimation.rainbow(`
     Mola bastante
     `);
+    await wait();
+    rainbowTitle.stop();
   }
-
-
+  
 console.clear();
 await intro();
 await next();
