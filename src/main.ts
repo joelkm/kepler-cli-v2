@@ -19,36 +19,55 @@ const pause = async () => {
   
     process.stdin.on('keypress', (chunk, key) => {
       if (key.name == 'escape') {
-        console.log('Escape pressed, exiting the process');
+        console.log(
+          chalk.green(
+            `Escape pressed, exiting the process`
+          )
+        );
         process.exit();
       }
-      console.clear()
       resolve();
     });
   })
 }
 
-  let repeat = true;
   
-  async function intro() {
-    figlet(`KEPLER  CLI  SEARCH  TOOL`, (err, data) => {
-      console.log(gradient.pastel.multiline(data) + '\n');
-  
-      console.log(
-        chalk.green(
-          `Press any key to start or esc to exit`
-        )
-      );
-    });
-    await pause();
-  }
-  
-  async function next() {
-    const rainbowTitle = chalkAnimation.rainbow(`What's Kepler?`);
+async function titleScreen() {
+  console.clear();
+  await figlet(`KEPLER  CLI  SEARCH  TOOL`, async (err, data) => {
+    console.log(gradient.pastel.multiline(data) + '\n');
+
+    console.log(
+      chalk.green(
+        `Press any key to start or esc to exit`
+      )
+    );
+  });
+  await pause();
+}
+
+async function menu() {
+  let running = true;
+  while(running){
+    const option = await inquirer.prompt({
+      name: 'menu',
+      type: 'list',
+      message: 'Please, select an option\n',
+      choices: [
+      "Start",
+      "What's this?",
+      "What's Kepler?",
+      "Exit",
+    ],
+  });
+}
+}
+
+
+  /*
+const rainbowTitle = chalkAnimation.rainbow(`What's Kepler?`);
     await pause();
     rainbowTitle.stop();
-  }
-  
-console.clear();
-await intro();
-await next();
+  */
+await titleScreen();
+await menu();
