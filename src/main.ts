@@ -9,7 +9,7 @@ import readline from 'readline';
 
 // Pause handler between dialogs
 
-const wait = async () => {
+const pause = async () => {
   return await new Promise<void>((resolve) => {
     readline.emitKeypressEvents(process.stdin);
     
@@ -32,14 +32,14 @@ const wait = async () => {
     const rainbowTitle = chalkAnimation.rainbow(`
     Mola mucho no?
     `);
-    await wait();
+    await pause();
   }
   
   async function next() {
     const rainbowTitle = chalkAnimation.rainbow(`
     Mola bastante
     `);
-    await wait();
+    await pause();
     rainbowTitle.stop();
   }
   
