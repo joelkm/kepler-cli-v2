@@ -60,14 +60,26 @@ async function menu() {
       "Exit",
     ],
   });
+  switch (option) {
+    case "Start":
+      
+      break;
+    case "What's this?":
+      
+      break;
+    case "What's Kepler?":
+      
+      break;
+    case "Exit":
+      
+      break;
+    default:
+      break;
+  }
 }
 }
 
 
-  /*
-const rainbowTitle = chalkAnimation.rainbow(`What's Kepler?`);
-    await pause();
-    rainbowTitle.stop();
-  */
+
 await titleScreen();
 await menu();
