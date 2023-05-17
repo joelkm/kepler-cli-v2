@@ -7,9 +7,11 @@ import readline from 'readline';
 import figlet from 'figlet';
 import gradient from 'gradient-string';
 
+import { handleStart, handleGuide, handleKepler, handleExit } from './options.js';
 
 
-// Pause handler between dialogs
+
+// To pause the process between dialogs
 
 const pause = async () => {
   return await new Promise<void>((resolve) => {
@@ -18,14 +20,6 @@ const pause = async () => {
     if (process.stdin.isTTY) process.stdin.setRawMode(true);
   
     process.stdin.on('keypress', (chunk, key) => {
-      if (key.name == 'escape') {
-        console.log(
-          chalk.green(
-            `Escape pressed, exiting the process`
-          )
-        );
-        process.exit();
-      }
       resolve();
     });
   })
@@ -39,7 +33,7 @@ async function titleScreen() {
 
     console.log(
       chalk.green(
-        `Press any key to start or esc to exit`
+        `Press any key to start or esc to exit\n`
       )
     );
   });
@@ -47,36 +41,40 @@ async function titleScreen() {
 }
 
 async function menu() {
-  let running = true;
-  while(running){
+  while(true){
+    console.clear();
     const option = await inquirer.prompt({
       name: 'menu',
       type: 'list',
-      message: 'Please, select an option\n',
+      message: 'Please, select an option',
       choices: [
       "Start",
       "What's this?",
       "What's Kepler?",
       "Exit",
-    ],
-  });
-  switch (option) {
-    case "Start":
-      
-      break;
-    case "What's this?":
-      
-      break;
-    case "What's Kepler?":
-      
-      break;
-    case "Exit":
-      
-      break;
-    default:
-      break;
+      ],
+    });
+    switch (option.menu) {
+      case "Start":
+        console.clear();
+        console.log('START');
+        await handleStart();
+        break;
+      case "What's this?":
+        console.clear();
+        await handleGuide();
+        break;
+      case "What's Kepler?":
+        console.clear();
+        await handleKepler();
+        break;
+      case "Exit":
+        await handleExit();
+        break;
+      default:
+        break;
+    }
   }
-}
 }
 
 
