@@ -4,7 +4,7 @@ import inquirer from 'inquirer';
 
 async function handleStart() {
     let answers = await inquirer.prompt({
-        name: 'options',
+        name: 'option',
         type: 'list',
         message: 'Please, select an option',
         choices: [
@@ -15,18 +15,19 @@ async function handleStart() {
         ],
       });    
     
-    
-    answers = await inquirer.prompt({
-        name: '',
-        type: 'input',
-        message: 'What is your name?',
-        default() {
-          return 'Player';
-        }
-    })    
+    if (answers.option != 'Habitability') {
+        answers = await inquirer.prompt({
+            name: '',
+            type: 'input',
+            message: 'What is your name?',
+            default() {
+              return 'Player';
+            }
+        })
+    }
 }
 async function handleGuide() {
-
+    
 }
 async function handleKepler() {
 
