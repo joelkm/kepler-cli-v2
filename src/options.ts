@@ -36,9 +36,19 @@ async function handleStart() {
         bottomLimit = answers.bottomLimit;
         topLimit = answers.topLimit;
     }
-    const planets: Array<number> = await getPlanets(property, bottomLimit, topLimit);
+    const planets = await getPlanets(property, bottomLimit, topLimit);
     console.log(`There are ${planets.length} results`);
-    
+    answers = await inquirer.prompt({
+        name: 'show',
+        type: 'confirm',
+        message: 'Do you want to see them?',
+        default() {
+            return true;
+        }
+    })
+    if (answers.show) {
+        console.log(planets);
+    }
 }
 async function handleGuide() {
     
