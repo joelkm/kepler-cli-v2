@@ -39,7 +39,6 @@ async function handleStart() {
     const planets: Array<number> = await getPlanets(property, bottomLimit, topLimit);
     console.log(`There are ${planets.length} results`);
     
-
 }
 async function handleGuide() {
     
@@ -48,8 +47,18 @@ async function handleKepler() {
 
 }
 async function handleExit() {
-    console.log(chalk.green('Shutting down the app...\n'));
-    process.exit(1);
+    const answers = await inquirer.prompt({
+        name: 'exit',
+        type: 'confirm',
+        message: 'You have chosen "Exit". Are you sure?',
+        default() {
+            return true;
+        }
+    })
+    if (answers.exit) {
+        console.log(chalk.green('Shutting down the app...\n'));
+        process.exit(1);
+    }
 }
 
 export { handleStart, handleGuide, handleKepler, handleExit }

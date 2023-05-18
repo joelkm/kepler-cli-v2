@@ -33,7 +33,7 @@ async function titleScreen() {
 
     console.log(
       chalk.green(
-        `Press any key to start or esc to exit\n`
+        `Press any key to start\n`
       )
     );
   });
@@ -54,18 +54,16 @@ async function menu() {
       "Exit",
       ],
     });
+    console.clear();
     switch (option.menu) {
       case "Start":
-        console.clear();
         console.log('START');
         await handleStart();
         break;
       case "What's this?":
-        console.clear();
         await handleGuide();
         break;
       case "What's Kepler?":
-        console.clear();
         await handleKepler();
         break;
       case "Exit":
