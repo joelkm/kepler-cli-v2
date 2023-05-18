@@ -2,9 +2,9 @@ import fs from 'fs';
 import { parse } from 'csv-parse';
 import {isHabitable, includedInInterval} from './filters.js'
 
-async function getPlanets(property, topLimit, bottomLimit) {
+async function getPlanets(property, bottomLimit, topLimit) {
     const planets = [];
-    fs.createReadStream('kepler_data.csv')
+    await fs.createReadStream('kepler_data.csv')
         .pipe(parse({
             comment: '#',
             columns: true,
@@ -25,6 +25,7 @@ async function getPlanets(property, topLimit, bottomLimit) {
                 return planet['kepler_name'];
             })
         })
+        return planets;
 }
 
 export { getPlanets };

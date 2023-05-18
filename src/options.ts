@@ -13,18 +13,33 @@ async function handleStart() {
         "Size",
         "Orbital period",
         ],
-      });    
-    
-    if (answers.option != 'Habitability') {
+      });
+    let property = answers.option;
+    let bottomLimit, topLimit;
+    if (property != 'Habitability') {
         answers = await inquirer.prompt({
-            name: '',
-            type: 'input',
-            message: 'What is your name?',
+            name: 'bottomLimit',
+            type: 'number',
+            message: 'Describe a bottom limit for the interval',
             default() {
-              return 'Player';
+              return 0;
             }
         })
+        answers = await inquirer.prompt({
+            name: 'topLimit',
+            type: 'number',
+            message: 'Describe a top limit for the interval',
+            default() {
+              return 999999999;
+            }
+        })
+        bottomLimit = answers.bottomLimit;
+        topLimit = answers.topLimit;
     }
+    const planets: Array<number> = await getPlanets(property, bottomLimit, topLimit);
+    console.log(`There are ${planets.length} results`);
+    
+
 }
 async function handleGuide() {
     
