@@ -3,27 +3,12 @@
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 import chalkAnimation from 'chalk-animation';
-import readline from 'readline';
 import figlet from 'figlet';
 import gradient from 'gradient-string';
 
+import { pause } from './common/pause.js';
 import { handleStart, handleGuide, handleKepler, handleExit } from './options.js';
 
-
-
-// To pause the process between dialogs
-
-const pause = async () => {
-  return await new Promise<void>((resolve) => {
-    readline.emitKeypressEvents(process.stdin);
-    
-    if (process.stdin.isTTY) process.stdin.setRawMode(true);
-  
-    process.stdin.on('keypress', (chunk, key) => {
-      resolve();
-    });
-  })
-}
 
   
 async function titleScreen() {
@@ -72,6 +57,7 @@ async function menu() {
       default:
         break;
     }
+    await pause();
   }
 }
 

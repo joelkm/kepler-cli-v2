@@ -1,4 +1,4 @@
-import { getPlanets } from './data/parse-data.js';
+import { getPlanets } from './parse-data.js';
 import chalk from 'chalk'
 import inquirer from 'inquirer';
 
