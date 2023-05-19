@@ -52,11 +52,12 @@ async function menu() {
         await handleKepler();
         break;
       case "Exit":
-        await handleExit();
+        await handleExit();        
         break;
       default:
         break;
     }
+
     await pause();
   }
 }

@@ -4,13 +4,15 @@ function isHabitable (planet) {
 
 function includedInInterval (property, planet, bottomLimit, topLimit) {
     switch (property) {
-        case 'temperature':
-            return planet['koi_teq'] >= bottomLimit && planet['koi_teq'] <= topLimit
+        case 'Temperature':
+            if(planet['koi_teq'] >= bottomLimit && planet['koi_teq'] <= topLimit){               
+                return planet;
+            }            
             break;
-        case 'size':
+        case 'Size':
             return planet['koi_prad'] >= bottomLimit && planet['koi_prad'] <= topLimit
             break;
-        case 'orbitalPeriod':
+        case 'Orbital period':
             return planet['koi_period'] >= bottomLimit && planet['koi_period'] <= topLimit
             break;
         default:

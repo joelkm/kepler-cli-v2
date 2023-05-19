@@ -36,7 +36,7 @@ async function handleStart() {
         bottomLimit = answers.bottomLimit;
         topLimit = answers.topLimit;
     }
-    const planets = await getPlanets(property, bottomLimit, topLimit);
+    let planets = await getPlanets(property, bottomLimit, topLimit);
     console.log(`There are ${planets.length} results`);
     answers = await inquirer.prompt({
         name: 'show',
@@ -68,7 +68,7 @@ async function handleExit() {
     if (answers.exit) {
         console.log(chalk.green('Shutting down the app...\n'));
         process.exit(1);
-    }
+    }    
 }
 
 export { handleStart, handleGuide, handleKepler, handleExit }
