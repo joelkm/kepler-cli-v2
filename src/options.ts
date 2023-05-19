@@ -25,6 +25,7 @@ async function handleStart() {
               return 0;
             }
         })
+        bottomLimit = answers.bottomLimit;
         answers = await inquirer.prompt({
             name: 'topLimit',
             type: 'number',
@@ -33,7 +34,6 @@ async function handleStart() {
               return 999999999;
             }
         })
-        bottomLimit = answers.bottomLimit;
         topLimit = answers.topLimit;
     }
     let planets = await getPlanets(property, bottomLimit, topLimit);

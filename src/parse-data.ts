@@ -22,11 +22,7 @@ async function getPlanets(property, bottomLimit, topLimit) {
                 if(isHabitable(data)) planets.push(data);
             }
             else {
-                if(includedInInterval(property, data, bottomLimit, topLimit)) {
-                    console.log('loco');
-                    
-                    planets.push(data);
-                }
+                if(includedInInterval(property, data, bottomLimit, topLimit)) planets.push(data);
             }
         })
         .on('error', (err)=>{
@@ -35,7 +31,8 @@ async function getPlanets(property, bottomLimit, topLimit) {
         })
         .on('end', async ()=>{
             planets = planets.map((planet)=>{                
-                return planet['kepler_name'];
+                if(planet['kepler_name'] != '') return planet['kepler_name'];
+                else return planet['kepoi_name'];
             })
             resolve();
         })
