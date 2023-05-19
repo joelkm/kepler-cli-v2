@@ -22,11 +22,11 @@ async function titleScreen() {
       )
     );
   });
-  await pause();
+  await pause(true);
 }
 
 async function menu() {
-  while(true){
+  // I want to wrap this in a while loop, but I can't (scroll down) 
     console.clear();
     const option = await inquirer.prompt({
       name: 'menu',
@@ -57,9 +57,8 @@ async function menu() {
       default:
         break;
     }
-
-    await pause();
-  }
+    // My idea was to make the exact same interaction than the one in the title screen, but this crashes the app,
+    // await pause(false);
 }
 
 
