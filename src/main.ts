@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import chalk from 'chalk';
+import chalk, { Chalk } from 'chalk';
 import inquirer from 'inquirer';
 import chalkAnimation from 'chalk-animation';
 import figlet from 'figlet';
@@ -42,14 +42,16 @@ async function menu() {
     console.clear();
     switch (option.menu) {
       case "Start":
-        console.log('START');
+        console.log(chalk.green('START'));
         await handleStart();
         break;
-      case "What's this?":
-        await handleGuide();
-        break;
       case "What's Kepler?":
+        console.log(chalk.green('KEPLER'));
         await handleKepler();
+        break;
+      case "What's this?":
+        console.log(chalk.green('GUIDE'));
+        await handleGuide();
         break;
       case "Exit":
         await handleExit();        
