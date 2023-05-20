@@ -50,9 +50,6 @@ async function handleStart() {
         console.log(planets);
     }
 }
-async function handleGuide() {
-     
-}
 async function handleKepler() {
     console.log(`Kepler was a space observatory designed to search for exoplanets, which are planets orbiting stars outside our solar system. It operated from 2009 to 2018 and made significant contributions to our understanding of exoplanets.
 
@@ -65,6 +62,11 @@ In addition to exoplanets, Kepler also made important contributions to other are
 Although the primary Kepler mission ended in 2013 due to the failure of two of its reaction wheels used for precise pointing, NASA extended its mission as the K2 mission, utilizing the remaining capabilities of the spacecraft to continue exoplanet searches and other scientific investigations.
 
 You can find more information about Kepler at ${chalk.blue('https://www.nasa.gov/')}`);
+}
+async function handleGuide() {
+     console.log(`This is a CLI app to explore the exoplanets registered by Kepler. The app gets the data from the planets csv from Nasa's official website. Choose one of the filtering options and see the results.
+     
+Note:The units for the interval options are K for Temperature, target's size to Earth's size ratio for Size (eg. 2 means a planet twice as big as the earth) and days for orbital period.`);
 }
 async function handleExit() {
     const answers = await inquirer.prompt({
@@ -81,4 +83,4 @@ async function handleExit() {
     }    
 }
 
-export { handleStart, handleGuide, handleKepler, handleExit }
+export { handleStart, handleKepler, handleGuide, handleExit }
