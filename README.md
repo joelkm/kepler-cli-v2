@@ -31,6 +31,3 @@ The habitability conditions (extracted from Paul Glister's research on planet ha
 - KOI disposition (A parameter to measure stellar disposition, explained in depth [here](https://exoplanetarchive.ipac.caltech.edu/docs/PurposeOfKOITable.html)
 - Light incidence (Between 0.36 and 1.11 asigning the Earth an incidence of 1)
 - Planet radius (Inferior than 1.6 times the size of the Earth)
-
-Note:
-For options 2, 3 and 4, user needs to specify a value interval to filter planets. The units used to filter planets are Kelvin for temperature, size to Earth size ratio for size and days for orbital period.
